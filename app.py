@@ -25,9 +25,14 @@ connect()
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    conn = sqlite3.connect('t_list.db')
+    c = conn.cursor()
+    c.execute("SELECT name, start_date, end_date, duration FROM holidays")
+    holidays = c.fetchall()
+    conn.close()
+    return flask.render_template('index.html', holidays=holidays)
 
-@app.route('/add')
+@app.route('/add', methods=['POST'])
 def add_holiday():
     name = flask.request.form['name']
     start_str = flask.request.form['start']
