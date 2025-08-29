@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>--Holiday Planner--</title>
+        <style>
+            * {
+                background-color: black;
+            }
+            .w {
+                background-color: white;
+                border: 2px solid white;
+                border-radius: 10px;
+                text-align: center;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            .s {
+                background-color: black;
+                border: 2px solid black;
+                color: white;
+                border-radius: 10px;
+                text-align: center;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            .w h1 {
+                color: black;
+                background-color: white;
+            }
+            .s h1 {
+                color: white;
+                background-color: black;
+            }
+            input {
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="w">
+            <h1>HELLO</h1>
+            <div class="s">
+                <form action="/add" method="post">
+                    <label for="name">Holiday Name:</label>
+                    <input type="text" name="name" required>
+                    <label for="start">Start Date:</label>
+                    <input type="date" name="start" required>
+                    <label for="end">End Date:</label>
+                    <input type="date" name="end" required>
+                    <button type="submit">Add Holiday</button>
+                </form>
+            </div>
+            <br />
+            <div>
+                <table border="1">
+                    <tr>
+                        <th>Name</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Duration (days)</th>
+                    </tr>
+                    {% for h in holidays %}
+                    <tr>
+                        <td>{{ h[0] }}</td>
+                        <td>{{ h[1] }}</td>
+                        <td>{{ h[2] }}</td>
+                        <td>{{ h[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <br />
+        </div>
+    </body>
+</html>
